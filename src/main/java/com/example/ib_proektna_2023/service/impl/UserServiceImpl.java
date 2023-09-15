@@ -57,6 +57,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<User> findAllCustomers() {
         return userRepository.findAllByType(UserType.CUSTOMER);
     }
-
+    public List<User> findAllEmployees() {
+        return userRepository.findAllByType(UserType.EMPLOYEE);
+    }
 
 }
