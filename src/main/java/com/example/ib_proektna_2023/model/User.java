@@ -11,7 +11,7 @@ import java.util.Objects;
 public class User {
 
     @Id
-    private Long BankAccountNumber;
+    private Long bankAccountNumber;
 
     @Enumerated(value = EnumType.STRING)
     private UserType type;
@@ -47,18 +47,18 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return BankAccountNumber.equals(user.BankAccountNumber);
+        return bankAccountNumber.equals(user.bankAccountNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(BankAccountNumber);
+        return Objects.hash(bankAccountNumber);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "BankAccountNumber=" + BankAccountNumber +
+                "BankAccountNumber=" + bankAccountNumber +
                 ", name='" + name + '\'' +
                 '}';
     }

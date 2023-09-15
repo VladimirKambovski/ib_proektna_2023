@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PersonalTransactionHistoryRepo extends JpaRepository<PersonalTransactionHistory,String> {
+public interface PersonalTransactionHistoryRepository extends JpaRepository<PersonalTransactionHistory,String> {
     List<PersonalTransactionHistory> findAllByUser_BankAccountNumber(Long bankAccountNumber);
 }
