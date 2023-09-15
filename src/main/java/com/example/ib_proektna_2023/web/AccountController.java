@@ -1,2 +1,4 @@
-package com.example.ib_proektna_2023.web;public class AccountController {
+package com.example.ib_proektna_2023.web;
+
+public class AccountController {
 }
