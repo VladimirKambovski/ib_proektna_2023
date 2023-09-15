@@ -2,6 +2,8 @@ package com.example.ib_proektna_2023.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -24,7 +26,9 @@ public class User {
 
     private BigDecimal accountBalance;
 
-    public void makeDeposit(BigDecimal amount) {
+
+
+    public void makeDeposit(BigDecimal amount ) {
         if (amount.compareTo(BigDecimal.ZERO) > 0) {
             accountBalance = accountBalance.add(amount);
             // Create a DepositsWithdrawals entry and add it to personalTransactionHistory

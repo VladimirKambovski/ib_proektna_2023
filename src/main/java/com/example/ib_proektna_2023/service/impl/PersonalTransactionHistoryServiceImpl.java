@@ -23,9 +23,9 @@ public class PersonalTransactionHistoryServiceImpl implements PersonalTransactio
     }
 
     @Override
-    public PersonalTransactionHistory save(PersonalTransactionHistory personalTransactionHistory) {
+    public PersonalTransactionHistory save(PersonalTransactionHistory PersonalTransactionHistory) {
         // Implement logic to save or update personal transaction history entry
-        return personalTransactionHistoryRepository.save(personalTransactionHistory);
+        return personalTransactionHistoryRepository.save(PersonalTransactionHistory);
     }
 
     // Add more methods for personal transaction history management if needed

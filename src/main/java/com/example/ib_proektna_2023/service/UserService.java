@@ -8,10 +8,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface UserService {
-    void makeWithdrawal(BigDecimal Amount);
-
-    void makeDeposit(BigDecimal Amount);
-
     public User getUserByBankAccountNumber(Long id) throws Exception;
     public User saveUser(User user);
     List<User> findAllCustomers();
@@ -19,4 +15,7 @@ public interface UserService {
     List<User> findAllEmployees();
     void makeDeposit(BigDecimal accountBalance, BigDecimal depositAmount);
     void makeWithdrawal(BigDecimal accountBalance, BigDecimal withdrawalAmount);
+
+
+
 }

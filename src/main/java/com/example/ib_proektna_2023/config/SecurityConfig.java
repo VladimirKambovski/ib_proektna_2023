@@ -12,12 +12,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+
         http
                 .authorizeRequests(authorize ->
                         authorize
-                                .antMatchers("/CustomerManagement/**", "/EmployeeManagement/**", "/TransactionMonitoring/**").hasRole("ADMIN")
-                                .antMatchers("/CustomerManagement/**", "/TransactionMonitoring/**").hasRole("EMPLOYEE")
-                                .antMatchers("/DepositsWithdrawals/**", "/PersonalTransactionHistory/**").hasRole("CUSTOMER")
+                                .antMatchers("/EmployeeManagement/**").hasRole("ADMIN")
+                                .antMatchers("/CustomerManagement/**").hasRole("EMPLOYEE")
+                                .antMatchers("/PersonalTransactionHistory/**").hasRole("CUSTOMER")
                                 .anyRequest().authenticated()
                 )
                 .x509(x509 -> {
