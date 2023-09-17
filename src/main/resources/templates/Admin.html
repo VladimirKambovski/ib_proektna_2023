@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Employee Management</title>
+</head>
+<body>
+<h1>Admin - Employee Management</h1>
+
+<!-- Display a list of employees -->
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Loop through the list of employees provided by the controller -->
+  <tr th:each="employee : ${employees}">
+    <td th:text="${employee.id}">Employee ID</td>
+    <td th:text="${employee.name}">Employee Name</td>
+    <td>
+      <!-- View Employee Details -->
+      <a th:href="@{/admin/employee-management/{id}(id=${employee.id})}">View</a> |
+
+      <!-- Remove Employee -->
+      <form th:action="@{/admin/employee-management/{id}/delete(id=${employee.id})}" method="post" onsubmit="return confirm('Are you sure you want to delete this employee?')">
+        <button type="submit">Remove</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

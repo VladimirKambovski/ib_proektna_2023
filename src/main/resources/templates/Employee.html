@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Customer Management</title>
+</head>
+<body>
+<h1>Employee - Customer Management</h1>
+
+<!-- Display a list of customers -->
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Loop through the list of customers provided by the controller -->
+  <tr th:each="customer : ${customers}">
+    <td th:text="${customer.id}">Customer ID</td>
+    <td th:text="${customer.name}">Customer Name</td>
+    <td>
+      <!-- View Customer Details -->
+      <a th:href="@{/employee/customer-management/{id}(id=${customer.id})}">View</a> |
+
+      <!-- Remove Customer -->
+      <form th:action="@{/employee/customer-management/{id}/remove(id=${customer.id})}" method="post" onsubmit="return confirm('Are you sure you want to remove this customer?')">
+        <button type="submit">Remove</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

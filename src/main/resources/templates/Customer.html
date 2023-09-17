@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction</title>
+</head>
+<body>
+<h1>Transaction</h1>
+<!-- Display the user's name -->
+<p th:text="${user.name}">User Name</p>
+
+<!-- Form to perform withdrawal or deposit -->
+<form action="/users/${user.id}/transaction" method="post">
+    <!-- CSRF Token -->
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
+    <!-- Hidden Field for User ID -->
+    <input type="hidden" name="userId" th:value="${user.id}">
+
+    <div>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required>
+    </div>
+
+    <!-- Handle insufficient funds error -->
+    <div th:if="${param.error == 'insufficientFunds'}" class="error">
+        Insufficient funds. Please enter a valid amount.
+    </div>
+
+    <!-- Determine the action based on the button clicked -->
+    <button type="submit" name="action" value="withdraw">Withdraw</button>
+    <button type="submit" name="action" value="deposit">Deposit</button>
+</form>
+
+<a th:href="@{'/users/' + user.id}">Back to User Profile</a>
+</body>
+</html>
