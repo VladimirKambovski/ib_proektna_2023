@@ -29,9 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/employee/**").hasAnyRole("EMPLOYEE", "ADMIN")
-                .antMatchers("/customer/**").hasRole("CUSTOMER")
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/employee/**").hasAnyRole("EMPLOYEE", "ADMIN")
+                .requestMatchers("/customer/**").hasRole("CUSTOMER")
                 .anyRequest().authenticated()
                 .and()
                 .x509()
