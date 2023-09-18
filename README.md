@@ -1,48 +1,50 @@
-#Проектна задача по информациска безбедност
+# Проектна задача по информациска безбедност
 
-##E-banking систем 
+## E-banking систем
 
-##Давор Шопар 205012
+**Давор Шопар 205012**
 
-##Владимир Камбовски 205014
+**Владимир Камбовски 205014**
 
-Проектот е изработен во Spring Boot/Java, со Spring Security 5, Spring Data JPA, MySQL датабаза. Корисничкиот интерфејс е изработен со Thymeleaf
-Апликацијата е изработена со MVC архитектура.
+Проектот е изработен во Spring Boot/Java, со Spring Security 5, Spring Data JPA, MySQL датабаза. Корисничкиот интерфејс е изработен со Thymeleaf. Апликацијата е изработена со MVC архитектура.
 
-#Врз база на тоа кој е најавен има различни функционалности
+## Врз база на тоа кој е најавен има различни функционалности
 
-Кога е најавен ADMIN
--Преглед на employees и опција да ги оттргне
-Кога е најавен EMPLOYEE
--Преглед на customers и опција да ги оттргне
-Кога е најавен CUSTOMER
--Опција Withdraw - подигнување на средства
--Опција Deposit - депозит на средства
+### Кога е најавен ADMIN
+- Преглед на employees и опција да ги оттргне
 
-#Models 
+### Кога е најавен EMPLOYEE
+- Преглед на customers и опција да ги оттргне
 
-EmployeeManagement(deleteEmployee method)
-TransactionMonitoring(информации за корисникот поврзан со трансакцијата, видот на трансакцијата, износот на трансакцијата и временскиот печат на трансакцијата.)
-TransactionType(enum за DEPOSIT, WITHDRAWAL)
-User(податоци за корсиникот: creditCardNumber, username, password, balance)
-UserManagement(delete customer method)
-UserType(enum од трите типови на корисници)
+### Кога е најавен CUSTOMER
+- Опција Withdraw - подигнување на средства
+- Опција Deposit - депозит на средства
 
-#Репозиториум и Сервиси
+## Models 
 
-UserRepositorium(Репозиториум за user entity, што ни овозможува лесно да комуницираме со базата на податоци)
-UserServices & UserServicesImpl (Овие класи ја опфаќаат функционалноста за управување со корисници, вклучувајќи ги операциите CRUD, управувањето со фондови и регистрацијата на корисниците, на структуриран и повторно употреблив начин. UserService го прикажува договорот, додека имплементацијата на услугата UserServiceImpl го обезбедува вистинскиот код за извршување на овие операции.)
+- **EmployeeManagement:** Содржи метода за бришење на Employee.
+- **TransactionMonitoring:** Содржи информации за корисникот поврзан со трансакцијата, видот на трансакцијата, износот на трансакцијата и временскиот печат на трансакцијата.
+- **TransactionType:** Enum за видовите на трансакции (DEPOSIT, WITHDRAWAL).
+- **User:** Содржи податоци за корисникот, вклучувајќи creditCardNumber, username, password и balance.
+- **UserManagement:** Содржи метода за бришење на корисник.
+- **UserType:** Enum кој ги дефинира трите типови на корисници.
 
-#Контролери
+## Репозиториум и Сервиси
 
-AdminController - Контрола на пристап има(ADMIN) преку /admin/**
-CustomerController - Контрола на пристап има(CUSTOMER) преку /users/**
-EmployeeController - Контрола на пристап има(EMPLOYEE) преку /employee/**
-LoginController - Контрола на пристап имаат сите корисници
-RegisterController - Контрола на пристап имаат сите корисници
+- **UserRepository:** Репозиториум за суштноста User, што овозможува лесна комуникација со базата на податоци.
+- **UserServices & UserServicesImpl:** Овие класи ги обработуваат функционалностите за управување со корисници, вклучувајќи операции како CRUD, управување со фондови и регистрација на корисници на структуриран и повторно употреблив начин. UserService го прикажува договорот, додека имплементацијата на UserServiceImpl го обезбедува вистинскиот код за извршување на овие операции.
 
-#SecurityConfig(2 way authentication)
+## Контролери
 
+- **AdminController:** Контролира пристапот на ADMIN корисниците преку /admin/**
+- **CustomerController:** Контролира пристапот на CUSTOMER корисниците преку /users/**
+- **EmployeeController:** Контролира пристапот на EMPLOYEE корисниците преку /employee/**
+- **LoginController:** Контролира пристапот за сите корисници
+- **RegisterController:** Контролира пристапот за сите корисници
+
+## SecurityConfig (2-way authentication)
+
+```java
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -94,12 +96,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 }
-
-
-
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -110,7 +108,4 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .build();
     }
 }
-
-овој код поставува безбедност за веб-апликација. Дефинира како корисниците се автентицирани, 
-до што можат да пристапат врз основа на нивните улоги и како можат да се најавуваат и излегуваат. 
-CustomUserDetailsService обезбедува кориснички детали, а апликацијата користи и автентикација базирана на лозинка и X.509 базирана на сертификат.
+Овој код обезбедува безбедност за веб-апликацијата. Дефинира како корисниците се автентицираат, до кои ресурси можат да пристапат во зависност од нивните улоги и како можат да се најавуваат и одјавуваат. CustomUserDetailsService обезбедува кориснички детали, а апликацијата користи и автентикација базирана на лозинка и X.509 базирана на сертификат.
