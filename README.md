@@ -66,6 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/employee/**").hasAnyRole("EMPLOYEE", "ADMIN")
+                .antMatchers("/customer/**").hasRole("CUSTOMER")
                 .anyRequest().authenticated()
                 .and()
                 .x509()
